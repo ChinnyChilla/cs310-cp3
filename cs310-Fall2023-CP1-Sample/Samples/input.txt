@@ -1,0 +1,64 @@
+add_movie 1 1977 Bednam John SaturdayNightFever
+remove_movie 1 
+add_movie 1 1977 Bednam John SaturdayNightFever
+add_movie 2 1972 FordCoppala Francis TheGodfather
+add_movie 3 1974 FordCoppala Francic TheGodfatherPartII
+add_movie 4 1994 Darabont Frank TheShawshankRedemption
+add_movie 5 2000 Crowe Cameron AlmostFamous
+add_movie 6 1990 Scorsese Martin Goodfellas
+add_movie 7 1994 Tarantino Quenton PulpFiction
+add_movie 8 1991 Demme Jonathan TheSilenceOfTheLambs
+add_movie 9 1980 Kubrick Stanley TheShining
+add_movie 10 2006 Scorsese Martin TheDeparted
+add_movie 11 1997 VanSant Gus GoodWillHunting
+add_movie 12 1989 Chechik Jeremiah NationalLampoon'sChristmasVacation
+add_movie 13 1984 Reiner Rob ThisIsSpinalTap
+remove_movie 13
+add_movie 13 1984 Reiner Rob ThisIsSpinalTap
+remove_movie 1 
+remove_movie 1 
+add_movie 1 1977 Bednam John SaturdayNightFever
+remove_movie 11 
+add_movie 11 1997 VanSant Gus GoodWillHunting
+register_actor 100 Travolta John
+register_actor 101 Gorney Karen
+register_actor 102 Drescher Fran
+join_cast 100 1
+join_cast 101 1
+join_cast 102 1
+register_actor 201 Brando Marlin
+register_actor 202 Pacino Al
+register_actor 203 Caan James
+register_actor 204 Duvall Robert
+register_actor 205 Shire Talia
+register_actor 206 Cazale John
+join_cast 201 2
+join_cast 202 2
+join_cast 203 2
+join_cast 204 2
+join_cast 205 2
+join_cast 206 2
+join_cast 201 3 
+join_cast 202 3
+join_cast 204 3
+join_cast 205 3
+join_cast 206 3
+register_actor 1200 Lewis Juliette
+register_actor 1201 D'Angelo Beverly
+register_actor 1202 Chase Chevy
+register_actor 1203 Galecki Johnny
+register_actor 1204 Quaid Randy
+join_cast 1200 12
+join_cast 1201 12
+join_cast 1202 12
+join_cast 1203 12
+join_cast 1204 12
+cast 12
+cast 1
+cast 5
+cast 2
+cast 3
+remove_movie 2
+cast 3
+cast 2
+quit
