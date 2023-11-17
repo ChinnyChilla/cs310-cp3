@@ -67,7 +67,7 @@ int Movie::findInsertLocation(int target, int left, int right)
 		int middle = (left + right) / 2;
 		int middle_id = cast->at(middle).getIndex();
 		if (middle_id == target)
-			return -1;
+			return middle;
 		if (middle_id < target) {
 			left = middle + 1;
 			continue;
@@ -84,7 +84,8 @@ void Movie::addActorToCast(Actor actor) {
 	int insertLocation = findInsertLocation(actor.getIndex(), 0, cast->count - 1);
 	cast->insert(insertLocation, actor);
 	cout << "join_cast: Added actor " << actor.first << " " << actor.last << " to the cast of " << movieTitle << endl;
-	actor.actorInMovie->push_back(movieid);
+	cout << "join_cast: Associated movie " << movieTitle << " with " << actor.first << " " << actor.last << endl; 
+	actor.addMovie(movieid);
 	return;
 }
 bool Movie::removeActorFromCast(unsigned int actorid) {

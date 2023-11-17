@@ -58,7 +58,7 @@ int MovieDatabase::findInsertLocation(Array<T> arr, int target, int left, int ri
 		int middle = (left + right) / 2;
 		int middle_id = arr.at(middle).getIndex();
 		if (middle_id == target)
-			return -1;
+			return middle;
 		if (middle_id < target) {
 			left = middle + 1;
 			continue;
@@ -100,6 +100,10 @@ void MovieDatabase::removeMovie(unsigned int movieid) {
 		return;
 	}
 	Movie movieToDelete = movies.at(location);
+	for (unsigned int i=0; i<movieToDelete.cast->count; i++) {
+		Actor currActor = movieToDelete.cast->at(i);
+		currActor.deleteMovie(movieToDelete.getIndex());
+	};
 	cout << "remove_movie: Removed " << movieToDelete.getMovieTitle() << endl;
 	movies.remove(location);
 	return;
@@ -141,6 +145,7 @@ void MovieDatabase::printCareer(unsigned int actorid) {
 	cout << actor.first << " " << actor.last << " has acted in:" << endl;
 	for (unsigned int i=0; i < actor.actorInMovie->count; i ++) {
 		int movieLocation = binarySearch(movies, actor.actorInMovie->at(i), 0, movies.count - 1);
+		if (movieLocation == -1) {continue;}
 		Movie movie = movies.at(movieLocation);
 		cout << "- " << movie.getMovieTitle() << endl;
 	};
@@ -157,10 +162,15 @@ void MovieDatabase::removeActor(unsigned int actorid) {
 	for (unsigned int i = 0; i < actor.actorInMovie->count; i++)
 	{
 		int movieLocation = binarySearch(movies, actor.actorInMovie->at(i), 0, movies.count - 1);
+		if (movieLocation == -1)
+		{
+			continue;
+		}
 		Movie movie = movies.at(movieLocation);
 		movie.removeActorFromCast(actorid);
 	};
-	cout << "remove_actor: " << actor.first << " " << actor.last << " removed from the program and all casts" << endl;
+	cout << "Removed Actor with id:" << actorid << endl;
+	// cout << "remove_actor: " << actor.first << " " << actor.last << " removed from the program and all casts" << endl;
 	actors.remove(actorLocation);
 	return;
 }

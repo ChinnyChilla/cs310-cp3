@@ -16,12 +16,13 @@ class Movie
 		void printCast();
 		int binarySearch(int target, int left, int right);
 		int findInsertLocation(int target, int left, int right);
-	
+		Array<Actor> *cast;
+
 	private:
 		unsigned int movieid = 0;
 		string movieTitle = "";
 		unsigned int releaseYear = 0;
 		string dirlast = "";
 		string dirfirst = "";
-		Array<Actor>* cast;
+		
 };	
