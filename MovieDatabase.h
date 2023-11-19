@@ -7,9 +7,10 @@ using namespace std;
 class MovieDatabase {
 
 	public:
-		Array<Movie> movies;
-		Array<Actor> actors;
+		Array<Movie*>* movies;
+		Array<Actor*>* actors;
 		MovieDatabase();
+		~MovieDatabase();
 		int findMovieIndex(int movieId);
 		int findActorIndex(int actorId);
 		void addMovie(unsigned int movieid, unsigned int year, string dirlast, string dirfirst, string title);
@@ -18,11 +19,11 @@ class MovieDatabase {
 		void removeActor(unsigned int actorid);
 		void addActorToMovie(unsigned int actorid, unsigned int movieid);
 		void printCastOfMovie(unsigned int movieid);
-		void printCareer(unsigned int actorid);
-		template <typename T>
-		int binarySearch(Array<T> arr, int target, int left, int right);
-		template <typename T>
-		int findInsertLocation(Array<T> arr, int target, int left, int right);
+		int binarySearchMovie(int target, int left, int right);
+		int binarySearchActor(int target, int left, int right);
+		void printCareer(unsigned int actorid); 
+		int findInsertLocationMovie(int target, int left, int right);
+		int findInsertLocationActor(int target, int left, int right);
 		void printMovieVector(Array<Movie> v);
 		void printActorVector(Array<Actor> v);
 		

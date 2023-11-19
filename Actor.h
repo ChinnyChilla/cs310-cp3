@@ -11,6 +11,7 @@ class Actor
 		Array<int>* actorInMovie;
 		int getIndex();
 		Actor();
+		~Actor();
 		Actor(unsigned int id, string firstname, string lastname);
 		void addMovie(unsigned int movieid);
 		void deleteMovie(unsigned int movieid);

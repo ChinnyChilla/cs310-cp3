@@ -6,31 +6,31 @@ using namespace std;
 #include "Parser.h"
 #include "MovieDatabase.h"
 
-void add_movie(unsigned int movieid, unsigned int year, string lastname, string firstname, string title, MovieDatabase &moviedb) {
-   moviedb.addMovie(movieid, year, lastname, firstname, title);
+void add_movie(unsigned int movieid, unsigned int year, string lastname, string firstname, string title, MovieDatabase* moviedb) {
+   moviedb->addMovie(movieid, year, lastname, firstname, title);
 }
 
-void remove_movie(unsigned int movieid, MovieDatabase &moviedb) {
-	moviedb.removeMovie(movieid);
+void remove_movie(unsigned int movieid, MovieDatabase* moviedb) {
+	moviedb->removeMovie(movieid);
 }
 
-void register_actor(unsigned int actorid, string lastname, string firstname, MovieDatabase &moviedb)
+void register_actor(unsigned int actorid, string lastname, string firstname, MovieDatabase* moviedb)
 {
-	moviedb.addActor(actorid, firstname, lastname);
+	moviedb->addActor(actorid, firstname, lastname);
 }
 
-void join_cast(unsigned int actorid, unsigned int movieid, MovieDatabase &moviedb) {
-	moviedb.addActorToMovie(actorid, movieid);
+void join_cast(unsigned int actorid, unsigned int movieid, MovieDatabase* moviedb) {
+	moviedb->addActorToMovie(actorid, movieid);
 }
-void cast(unsigned int movieid, MovieDatabase &mdb) {
-	mdb.printCastOfMovie(movieid);
+void cast(unsigned int movieid, MovieDatabase* mdb) {
+	mdb->printCastOfMovie(movieid);
 }
-void career(unsigned int actorid, MovieDatabase &mdb) {
-	mdb.printCareer(actorid);
+void career(unsigned int actorid, MovieDatabase* mdb) {
+	mdb->printCareer(actorid);
 }
-void remove_actor(unsigned int actorid, MovieDatabase &mdb)
+void remove_actor(unsigned int actorid, MovieDatabase* mdb)
 {
-	mdb.removeActor(actorid);
+	mdb->removeActor(actorid);
 }
 
 bool accept_commands(istream &is, bool silent=false, bool echo=false) {
@@ -72,6 +72,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
       if (p.getOperation() == "quit") {
          if (p.numArgs() > 0) 
             cout << std::endl << "Ignoring " << UNEXPECTED_ARGS << endl; 
+		delete moviedb;
          return true;
       }
 
@@ -90,7 +91,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 				cout << "Error: field " << p.getArg(2) << " is not an integer" << endl;
 			}
 			else {
-				add_movie(stoi(p.getArg(1)), stoi(p.getArg(2)), p.getArg(3), p.getArg(4), p.getArg(5), *moviedb);
+				add_movie(stoi(p.getArg(1)), stoi(p.getArg(2)), p.getArg(3), p.getArg(4), p.getArg(5), moviedb);
 			}
 		 }
       }
@@ -105,7 +106,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 				cout << "Error: field " << p.getArg(1) << " is not an integer" << endl;
 			}
 			else {
-				remove_movie(stoi(p.getArg(1)), *moviedb);
+				remove_movie(stoi(p.getArg(1)), moviedb);
 			}
          }
       }
@@ -125,7 +126,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 			  }
 			  else
 			  {
-				  register_actor(stoi(p.getArg(1)), p.getArg(2), p.getArg(3), *moviedb);
+				  register_actor(stoi(p.getArg(1)), p.getArg(2), p.getArg(3), moviedb);
 			  }
 		  }
 	  }
@@ -144,7 +145,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 				cout << "Error: field " << p.getArg(2) << " is not an integer" << endl;
 			}
 			else {
-              join_cast(stoi(p.getArg(1)), stoi(p.getArg(2)), *moviedb);
+              join_cast(stoi(p.getArg(1)), stoi(p.getArg(2)), moviedb);
             }
          }
       }
@@ -164,7 +165,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 			  }
 			  else
 			  {
-				  cast(stoi(p.getArg(1)), *moviedb);
+				  cast(stoi(p.getArg(1)), moviedb);
 			  }
 		  }
 	  }
@@ -184,7 +185,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 			  }
 			  else
 			  {
-				  career(stoi(p.getArg(1)), *moviedb);
+				  career(stoi(p.getArg(1)), moviedb);
 			  }
 		  }
 	  }
@@ -204,7 +205,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 			  }
 			  else
 			  {
-				  remove_actor(stoi(p.getArg(1)), *moviedb);
+				  remove_actor(stoi(p.getArg(1)), moviedb);
 			  }
 		  }
 	  }
@@ -213,6 +214,7 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
               "Command not recognized. Please try again." << endl; 
       }
    }
+   delete moviedb;
    return true;
 }
 

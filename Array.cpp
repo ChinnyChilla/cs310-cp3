@@ -9,6 +9,12 @@ Array<ArrayType>::Array()
 	count = 0;
 	
 }
+
+template <typename ArrayType>
+Array<ArrayType>::~Array() {
+	delete[] arr;
+}
+
 template <typename ArrayType>
 Array<ArrayType>::Array(ArrayType items)
 {
@@ -55,7 +61,7 @@ void Array<ArrayType>::create_space(unsigned int index)
 }
 template <typename ArrayType>
 void Array<ArrayType>::remove(unsigned int index)
-{
+{	
 	for (unsigned int i=index+1; i<count; i++) {
 		arr[i-1] = arr[i];
 	}

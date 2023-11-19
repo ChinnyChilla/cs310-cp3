@@ -10,11 +10,14 @@ Actor::Actor(unsigned int actorid, string firstname, string lastname) {
 	actorInMovie = new Array<int>;
 }
 Actor::Actor() {
-	id = -1;
-	first = "NoName";
-	last = "NoName";
+	// id = -1;
+	// first = "NoName";
+	// last = "NoName";
+	// actorInMovie = new Array<int>;
 }
-
+Actor::~Actor() {
+	delete actorInMovie;
+}
 int Actor::getIndex()
 {
 	return id;

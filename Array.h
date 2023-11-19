@@ -6,6 +6,7 @@ class Array {
 	public:
 		Array();
 		Array(ArrayType items);
+		~Array();
 
 		void grow();
 		void push_back(ArrayType item);

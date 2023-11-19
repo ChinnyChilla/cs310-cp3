@@ -7,16 +7,17 @@ class Movie
 {
 	public:
 		Movie();
+		~Movie();
 		Movie(unsigned int movieid, unsigned int year, string dirlast, string dirfirst, string title);
 		int getIndex();
-		void addActorToCast(Actor actor);
+		void addActorToCast(Actor* actor);
 		bool removeActorFromCast(unsigned int actorid);
 		int findActorIndex(int actorid);
 		string getMovieTitle();
 		void printCast();
 		int binarySearch(int target, int left, int right);
 		int findInsertLocation(int target, int left, int right);
-		Array<Actor> *cast;
+		Array<int> *cast;
 
 	private:
 		unsigned int movieid = 0;
