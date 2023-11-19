@@ -218,6 +218,6 @@ bool accept_commands(istream &is, bool silent=false, bool echo=false) {
 
 int main()
 {
-  accept_commands(cin, false, false);
+  accept_commands(cin, true, false);
   return 0;
 }
