@@ -151,7 +151,7 @@ void MovieDatabase::removeMovie(unsigned int movieid) {
 	}
 	Movie* movieToDelete = movies->at(location);
 	for (unsigned int i=0; i<movieToDelete->cast->count; i++) {
-		int currActorLocation = binarySearchActor(movieToDelete->cast->at(i), 0, movieToDelete->cast->count);
+		int currActorLocation = binarySearchActor(movieToDelete->cast->at(i), 0, actors->count - 1);
 		Actor* currActor = actors->at(currActorLocation);
 		currActor->deleteMovie(movieToDelete->getIndex());
 	};
@@ -183,12 +183,12 @@ void MovieDatabase::printCastOfMovie(unsigned int movieid) {
 		cout << "cast: Error movie id " << movieid << " does not exist" << endl;
 		return;
 	}
-	movies->at(location)->printCast();
 	cout << movies->at(location)->getMovieTitle() << " features:" << endl;
 	Array<int> *cast = movies->at(location)->cast;
 	for (unsigned int i = 0; i < cast->count; i++)
 	{
-		int actorLocation = binarySearchActor(cast->at(i), 0, cast->count - 1);
+		int actorLocation = binarySearchActor(cast->at(i), 0, actors->count - 1);
+		if (actorLocation == -1) continue;
 		Actor* curr = actors->at(actorLocation);
 		cout << "- " << curr->first << " " << curr->last << endl;
 	}
